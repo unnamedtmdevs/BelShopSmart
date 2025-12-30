@@ -64,11 +64,11 @@ class ProductDetailViewModel: ObservableObject {
         let components = Calendar.current.dateComponents([.day, .hour], from: now, to: expiryDate)
         
         if let days = components.day, days > 0 {
-            return "\(days) дн."
+            return "\(days)d"
         } else if let hours = components.hour, hours > 0 {
-            return "\(hours) ч."
+            return "\(hours)h"
         }
-        return "Скоро истечет"
+        return "Expiring soon"
     }
 }
 

@@ -83,7 +83,7 @@ struct ProductDetailView: View {
                         HStack(spacing: 4) {
                             Image(systemName: "flame.fill")
                                 .font(.system(size: 12))
-                            Text("Акция -\(viewModel.product.dealDiscount ?? 0)%")
+                            Text("Deal -\(viewModel.product.dealDiscount ?? 0)%")
                                 .font(.system(size: 13, weight: .bold))
                         }
                         .foregroundColor(Color("AccentYellow"))
@@ -110,7 +110,7 @@ struct ProductDetailView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Text("(\(viewModel.product.reviewCount) отзывов)")
+                    Text("(\(viewModel.product.reviewCount) reviews)")
                         .font(.system(size: 14))
                         .foregroundColor(.white.opacity(0.6))
                 }
@@ -127,7 +127,7 @@ struct ProductDetailView: View {
     private var priceComparison: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
-                Text("Сравнение цен")
+                Text("Price Comparison")
                     .font(.system(size: 22, weight: .bold))
                     .foregroundColor(.white)
                 
@@ -135,7 +135,7 @@ struct ProductDetailView: View {
                 
                 if viewModel.product.priceSavings > 0 {
                     VStack(alignment: .trailing, spacing: 2) {
-                        Text("Экономия")
+                        Text("Savings")
                             .font(.system(size: 12))
                             .foregroundColor(.white.opacity(0.6))
                         Text(String(format: "%.2f BYN", viewModel.product.priceSavings))
@@ -162,33 +162,33 @@ struct ProductDetailView: View {
     
     private var productInfo: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Информация о товаре")
+            Text("Product Information")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(.white)
             
             VStack(spacing: 12) {
                 InfoRow(
                     icon: "tag.fill",
-                    title: "Категория",
+                    title: "Category",
                     value: viewModel.product.category.rawValue
                 )
                 
                 InfoRow(
                     icon: "cart.fill",
-                    title: "Магазинов",
+                    title: "Stores",
                     value: "\(viewModel.product.prices.count)"
                 )
                 
                 InfoRow(
                     icon: "dollarsign.circle.fill",
-                    title: "Цена от",
+                    title: "Price from",
                     value: String(format: "%.2f BYN", viewModel.product.lowestPrice)
                 )
                 
                 if let timeRemaining = viewModel.dealTimeRemaining {
                     InfoRow(
                         icon: "clock.fill",
-                        title: "Акция до",
+                        title: "Deal ends",
                         value: timeRemaining,
                         valueColor: Color("AccentYellow")
                     )
@@ -204,7 +204,7 @@ struct ProductDetailView: View {
         Group {
             if !viewModel.product.specifications.isEmpty {
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("Характеристики")
+                    Text("Specifications")
                         .font(.system(size: 22, weight: .bold))
                         .foregroundColor(.white)
                     
@@ -244,7 +244,7 @@ struct ProductDetailView: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Лучшая цена")
+                    Text("Best Price")
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.7))
                     
@@ -291,7 +291,7 @@ struct RetailerPriceCard: View {
                         .foregroundColor(.white)
                     
                     if isBestPrice {
-                        Text("ЛУЧШАЯ")
+                        Text("BEST")
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)
@@ -310,7 +310,7 @@ struct RetailerPriceCard: View {
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.7))
                     
-                    Text("• Доставка: \(retailerPrice.deliveryDays) дн.")
+                    Text("• Delivery: \(retailerPrice.deliveryDays)d")
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.7))
                 }
@@ -330,7 +330,7 @@ struct RetailerPriceCard: View {
                 }
                 
                 if retailerPrice.shippingCost > 0 {
-                    Text("доставка: \(String(format: "%.2f", retailerPrice.shippingCost))")
+                    Text("shipping: \(String(format: "%.2f", retailerPrice.shippingCost))")
                         .font(.system(size: 11))
                         .foregroundColor(.white.opacity(0.5))
                 }

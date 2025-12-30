@@ -34,11 +34,11 @@ struct DealsView: View {
         VStack(spacing: 15) {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Акции и предложения")
+                    Text("Deals & Offers")
                         .font(.system(size: 32, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                     
-                    Text("\(viewModel.deals.count) активных акций")
+                    Text("\(viewModel.deals.count) active deals")
                         .font(.system(size: 15))
                         .foregroundColor(.white.opacity(0.7))
                 }
@@ -69,7 +69,7 @@ struct DealsView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.white.opacity(0.6))
             
-            TextField("Поиск акций...", text: $viewModel.searchText)
+            TextField("Search deals...", text: $viewModel.searchText)
                 .foregroundColor(.white)
                 .onChange(of: viewModel.searchText) { _ in
                     viewModel.loadDeals()
@@ -94,7 +94,7 @@ struct DealsView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 CategoryFilterButton(
-                    title: "Все",
+                    title: "All",
                     isSelected: viewModel.selectedCategory == nil
                 ) {
                     viewModel.selectedCategory = nil
@@ -122,7 +122,7 @@ struct DealsView: View {
             HStack {
                 Image(systemName: "clock.fill")
                     .foregroundColor(Color("AccentYellow"))
-                Text("Заканчиваются скоро")
+                Text("Expiring Soon")
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(.white)
             }
@@ -169,11 +169,11 @@ struct DealsView: View {
                 .font(.system(size: 80))
                 .foregroundColor(.white.opacity(0.3))
             
-            Text("Нет активных акций")
+            Text("No Active Deals")
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
             
-            Text("Проверьте позже для новых\nвыгодных предложений")
+            Text("Check back later for\nnew amazing offers")
                 .font(.system(size: 16))
                 .foregroundColor(.white.opacity(0.6))
                 .multilineTextAlignment(.center)
@@ -265,7 +265,7 @@ struct DealProductCard: View {
                     
                     Spacer()
                     
-                    Text("\(product.prices.count) магазинов")
+                    Text("\(product.prices.count) stores")
                         .font(.system(size: 13))
                         .foregroundColor(.white.opacity(0.7))
                 }

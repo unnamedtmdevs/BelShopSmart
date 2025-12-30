@@ -64,13 +64,13 @@ class DealsViewModel: ObservableObject {
         let components = Calendar.current.dateComponents([.day, .hour, .minute], from: now, to: expiryDate)
         
         if let days = components.day, days > 0 {
-            return "Осталось \(days) дн."
+            return "\(days) days left"
         } else if let hours = components.hour, hours > 0 {
-            return "Осталось \(hours) ч."
+            return "\(hours) hours left"
         } else if let minutes = components.minute, minutes > 0 {
-            return "Осталось \(minutes) мин."
+            return "\(minutes) min left"
         }
-        return "Истекает"
+        return "Expiring soon"
     }
 }
 

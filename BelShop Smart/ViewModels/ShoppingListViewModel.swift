@@ -16,11 +16,11 @@ class ShoppingListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     enum SortOption: String, CaseIterable {
-        case dateAdded = "Дата добавления"
-        case priceAsc = "Цена: низкая → высокая"
-        case priceDesc = "Цена: высокая → низкая"
-        case name = "Название"
-        case priority = "Приоритет"
+        case dateAdded = "Date Added"
+        case priceAsc = "Price: Low → High"
+        case priceDesc = "Price: High → Low"
+        case name = "Name"
+        case priority = "Priority"
     }
     
     init() {

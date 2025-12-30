@@ -99,15 +99,15 @@ struct RetailerPrice: Identifiable, Codable, Hashable {
 }
 
 enum ProductCategory: String, Codable, CaseIterable {
-    case electronics = "Электроника"
-    case clothing = "Одежда"
-    case home = "Дом и сад"
-    case beauty = "Красота"
-    case sports = "Спорт"
-    case books = "Книги"
-    case toys = "Игрушки"
-    case food = "Продукты"
-    case other = "Другое"
+    case electronics = "Electronics"
+    case clothing = "Clothing"
+    case home = "Home & Garden"
+    case beauty = "Beauty"
+    case sports = "Sports"
+    case books = "Books"
+    case toys = "Toys"
+    case food = "Food"
+    case other = "Other"
     
     var iconName: String {
         switch self {
@@ -125,10 +125,10 @@ enum ProductCategory: String, Codable, CaseIterable {
 }
 
 enum ProductAvailability: String, Codable {
-    case inStock = "В наличии"
-    case lowStock = "Мало"
-    case outOfStock = "Нет в наличии"
-    case preOrder = "Предзаказ"
+    case inStock = "In Stock"
+    case lowStock = "Low Stock"
+    case outOfStock = "Out of Stock"
+    case preOrder = "Pre-Order"
     
     var color: String {
         switch self {
@@ -160,9 +160,9 @@ struct WishlistItem: Identifiable, Codable {
     }
     
     enum Priority: String, Codable, CaseIterable {
-        case high = "Высокий"
-        case medium = "Средний"
-        case low = "Низкий"
+        case high = "High"
+        case medium = "Medium"
+        case low = "Low"
     }
 }
 

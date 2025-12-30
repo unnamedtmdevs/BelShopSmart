@@ -31,12 +31,12 @@ struct SettingsView: View {
         }
         .alert(isPresented: $showingResetAlert) {
             Alert(
-                title: Text("Сбросить аккаунт?"),
-                message: Text("Все данные будут удалены. Это действие нельзя отменить."),
-                primaryButton: .destructive(Text("Сбросить")) {
+                title: Text("Reset Account?"),
+                message: Text("All data will be deleted. This action cannot be undone."),
+                primaryButton: .destructive(Text("Reset")) {
                     authService.resetAccount()
                 },
-                secondaryButton: .cancel(Text("Отмена"))
+                secondaryButton: .cancel(Text("Cancel"))
             )
         }
     }
@@ -44,7 +44,7 @@ struct SettingsView: View {
     private var profileSection: some View {
         VStack(spacing: 15) {
             HStack {
-                Text("Настройки")
+                Text("Settings")
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 Spacer()
@@ -71,11 +71,11 @@ struct SettingsView: View {
                     VStack(spacing: 5) {
                         if editingUsername {
                             HStack {
-                                TextField("Новое имя", text: $newUsername)
+                                TextField("New name", text: $newUsername)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .frame(maxWidth: 200)
                                 
-                                Button("Сохранить") {
+                                Button("Save") {
                                     if !newUsername.isEmpty {
                                         var updatedUser = user
                                         updatedUser.username = newUsername
@@ -107,7 +107,7 @@ struct SettingsView: View {
                                 .foregroundColor(.white.opacity(0.7))
                         }
                         
-                        Text("Участник с \(formatDate(user.createdDate))")
+                        Text("Member since \(formatDate(user.createdDate))")
                             .font(.system(size: 13))
                             .foregroundColor(.white.opacity(0.5))
                     }
@@ -122,13 +122,13 @@ struct SettingsView: View {
     
     private var preferencesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Настройки приложения")
+            SectionHeader(title: "App Settings")
             
             VStack(spacing: 0) {
                 if let user = authService.currentUser {
                     SettingsToggle(
                         icon: "moon.fill",
-                        title: "Темная тема",
+                        title: "Dark Theme",
                         isOn: Binding(
                             get: { user.preferences.darkModeEnabled },
                             set: { newValue in
@@ -143,7 +143,7 @@ struct SettingsView: View {
                     
                     SettingsRow(
                         icon: "dollarsign.circle.fill",
-                        title: "Валюта",
+                        title: "Currency",
                         value: user.preferences.currency
                     )
                     
@@ -151,8 +151,8 @@ struct SettingsView: View {
                     
                     SettingsRow(
                         icon: "globe",
-                        title: "Язык",
-                        value: "Русский"
+                        title: "Language",
+                        value: "English"
                     )
                 }
             }
@@ -163,13 +163,13 @@ struct SettingsView: View {
     
     private var notificationsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Уведомления")
+            SectionHeader(title: "Notifications")
             
             VStack(spacing: 0) {
                 if let user = authService.currentUser {
                     SettingsToggle(
                         icon: "flame.fill",
-                        title: "Акции и предложения",
+                        title: "Deals & Offers",
                         isOn: Binding(
                             get: { user.notificationSettings.dealAlertsEnabled },
                             set: { newValue in
@@ -184,7 +184,7 @@ struct SettingsView: View {
                     
                     SettingsToggle(
                         icon: "arrow.down.circle.fill",
-                        title: "Снижение цен",
+                        title: "Price Drops",
                         isOn: Binding(
                             get: { user.notificationSettings.priceDropAlertsEnabled },
                             set: { newValue in
@@ -199,7 +199,7 @@ struct SettingsView: View {
                     
                     SettingsToggle(
                         icon: "heart.fill",
-                        title: "Обновления списка желаний",
+                        title: "Wishlist Updates",
                         isOn: Binding(
                             get: { user.notificationSettings.wishlistUpdatesEnabled },
                             set: { newValue in
@@ -218,7 +218,7 @@ struct SettingsView: View {
     
     private var categoriesSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Любимые категории")
+            SectionHeader(title: "Favorite Categories")
             
             if let user = authService.currentUser {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
@@ -241,7 +241,7 @@ struct SettingsView: View {
     
     private var accountSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Аккаунт")
+            SectionHeader(title: "Account")
             
             VStack(spacing: 0) {
                 Button(action: { showingResetAlert = true }) {
@@ -251,7 +251,7 @@ struct SettingsView: View {
                             .foregroundColor(.orange)
                             .frame(width: 40)
                         
-                        Text("Сбросить данные")
+                        Text("Reset Data")
                             .font(.system(size: 16))
                             .foregroundColor(.white)
                         
@@ -271,19 +271,19 @@ struct SettingsView: View {
     
     private var aboutSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "О приложении")
+            SectionHeader(title: "About")
             
             VStack(spacing: 0) {
                 SettingsRow(
                     icon: "info.circle.fill",
-                    title: "Версия",
+                    title: "Version",
                     value: "1.0.0"
                 )
             }
             .background(Color("BackgroundSecondary"))
             .cornerRadius(16)
             
-            Text("BelShopSmart - ваш умный помощник в покупках")
+            Text("BelShopSmart - your smart shopping assistant")
                 .font(.system(size: 13))
                 .foregroundColor(.white.opacity(0.5))
                 .multilineTextAlignment(.center)

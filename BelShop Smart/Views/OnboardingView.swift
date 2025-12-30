@@ -60,23 +60,23 @@ struct OnboardingView: View {
     private var setupPage: some View {
         ScrollView {
             VStack(spacing: 25) {
-                Text("Настройте свой профиль")
+                Text("Set Up Your Profile")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .padding(.top, 40)
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("Имя пользователя")
+                    Text("Username")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.white)
                     
-                    TextField("Введите ваше имя", text: $username)
+                    TextField("Enter your name", text: $username)
                         .textFieldStyle(OnboardingTextFieldStyle())
                 }
                 .padding(.horizontal)
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("Email (необязательно)")
+                    Text("Email (Optional)")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.white)
                     
@@ -88,7 +88,7 @@ struct OnboardingView: View {
                 .padding(.horizontal)
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("Ваши любимые категории")
+                    Text("Your Favorite Categories")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.white)
                         .padding(.horizontal)
@@ -123,7 +123,7 @@ struct OnboardingView: View {
             HStack(spacing: 15) {
                 if currentPage > 0 {
                     Button(action: previousPage) {
-                        Text("Назад")
+                        Text("Back")
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -134,7 +134,7 @@ struct OnboardingView: View {
                 }
                 
                 Button(action: nextPage) {
-                    Text(currentPage == pages.count ? "Начать" : "Далее")
+                    Text(currentPage == pages.count ? "Get Started" : "Next")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -187,7 +187,7 @@ struct OnboardingView: View {
     private func completeOnboarding() {
         let categories = Array(selectedCategories)
         AuthenticationService.shared.createUser(
-            username: username.isEmpty ? "Пользователь" : username,
+            username: username.isEmpty ? "User" : username,
             email: email,
             favoriteCategories: categories
         )
@@ -202,18 +202,18 @@ struct OnboardingPage {
     
     static let allPages = [
         OnboardingPage(
-            title: "Сравнивайте цены",
-            description: "Находите лучшие предложения среди множества магазинов и экономьте деньги",
+            title: "Compare Prices",
+            description: "Find the best deals across multiple stores and save money",
             icon: "chart.bar.fill"
         ),
         OnboardingPage(
-            title: "Создавайте списки желаний",
-            description: "Сохраняйте понравившиеся товары и следите за изменением цен",
+            title: "Create Wishlists",
+            description: "Save your favorite products and track price changes",
             icon: "heart.fill"
         ),
         OnboardingPage(
-            title: "Получайте уведомления",
-            description: "Будьте в курсе новых акций и скидок на интересующие вас товары",
+            title: "Get Notifications",
+            description: "Stay updated on new deals and discounts for products you love",
             icon: "bell.badge.fill"
         )
     ]

@@ -33,7 +33,7 @@ struct ShoppingListView: View {
     private var header: some View {
         VStack(spacing: 15) {
             HStack {
-                Text("Список желаний")
+                Text("Wishlist")
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 
@@ -49,13 +49,13 @@ struct ShoppingListView: View {
                 }
                 .actionSheet(isPresented: $showingSortOptions) {
                     ActionSheet(
-                        title: Text("Сортировка"),
+                        title: Text("Sort By"),
                         buttons: ShoppingListViewModel.SortOption.allCases.map { option in
                             .default(Text(option.rawValue)) {
                                 viewModel.sortOption = option
                                 viewModel.loadWishlist()
                             }
-                        } + [.cancel(Text("Отмена"))]
+                        } + [.cancel(Text("Cancel"))]
                     )
                 }
             }
@@ -73,7 +73,7 @@ struct ShoppingListView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.white.opacity(0.6))
             
-            TextField("Поиск товаров...", text: $viewModel.searchText)
+            TextField("Search products...", text: $viewModel.searchText)
                 .foregroundColor(.white)
                 .onChange(of: viewModel.searchText) { _ in
                     viewModel.loadWishlist()
@@ -98,7 +98,7 @@ struct ShoppingListView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 CategoryFilterButton(
-                    title: "Все",
+                    title: "All",
                     isSelected: viewModel.selectedCategory == nil
                 ) {
                     viewModel.selectedCategory = nil
@@ -146,11 +146,11 @@ struct ShoppingListView: View {
                 .font(.system(size: 80))
                 .foregroundColor(.white.opacity(0.3))
             
-            Text("Список желаний пуст")
+            Text("Your Wishlist is Empty")
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
             
-            Text("Добавьте товары из раздела\n«Акции» или через поиск")
+            Text("Add products from the\nDeals tab or search")
                 .font(.system(size: 16))
                 .foregroundColor(.white.opacity(0.6))
                 .multilineTextAlignment(.center)
@@ -196,7 +196,7 @@ struct WishlistProductCard: View {
                         HStack(spacing: 5) {
                             Image(systemName: "flame.fill")
                                 .font(.system(size: 12))
-                            Text("Акция -\(product.dealDiscount ?? 0)%")
+                            Text("Deal -\(product.dealDiscount ?? 0)%")
                                 .font(.system(size: 13, weight: .semibold))
                         }
                         .foregroundColor(Color("AccentYellow"))
